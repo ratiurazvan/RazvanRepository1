@@ -5,23 +5,21 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LogInPage;
+import pages.MyAccountPage;
 
 @Test
-public class LoginTest extends CommonClass {
+public class MyAccountPageDisplayedTest extends CommonClass {
 
     HomePage homepage;
     WebDriver driver;
     LogInPage loginPage;
+    MyAccountPage myAccountPage;
 
     @BeforeClass
     public void setup() throws InterruptedException{
@@ -34,16 +32,20 @@ public class LoginTest extends CommonClass {
     public void loginTest() {
         homepage = new HomePage(driver);
         loginPage = new LogInPage(driver);
+        myAccountPage = new MyAccountPage(driver);
+
         homepage.clickOnSignInButton();
         loginPage.setEmailAddressField("razvanratiu@yahoo.com")
                 .setPasswordField("Softvision10")
                 .clickonLogInbutton();
-        WebElement myAccountMessage = driver.findElement(By.cssSelector(".info-account"));
-        Assert.assertTrue(myAccountMessage.getText().contains("Welcome to your account."));
+      // myAccountPage.searchField.isDisplayed();
+       Assert.assertTrue(myAccountPage.isSearchFieldDisplayed(),"The element is not displayed");
     }
 
     @AfterClass
-    public void teardown(){
+    public void teardown() {
         driver.quit();
     }
+
+
 }

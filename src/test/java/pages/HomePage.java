@@ -12,49 +12,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.xml.bind.Element;
 
+
 public class HomePage {
 
     WebDriver driver;
 
-    public HomePage(WebDriver driver){
+    public HomePage(WebDriver driver) {
 
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy( css= ".login")
+    @FindBy(css = ".login")
     protected WebElement signInButton;
 
 
-    @FindBy( name = "email")
-    protected WebElement emailAddressField;
-
-    @FindBy( name ="passwd")
-    protected WebElement passwordField;
-
-    @FindBy( id ="SubmitLogin")
-    protected WebElement logInButton;
-
-    public HomePage clickOnSignInButton(){
+    public HomePage clickOnSignInButton() {
         signInButton.click();
         return this;
     }
-
-    public HomePage setEmailAddressField(String email){
-
-        emailAddressField.sendKeys(email);
-        return this;
-    }
-
-    public HomePage setPasswordField(String password){
-        passwordField.sendKeys(password);
-        return this;
-    }
-
-    public HomePage clickonLogInbutton(){
-        logInButton.click();
-        return this;
-    }
-
 
 }
